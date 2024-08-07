@@ -1,0 +1,232 @@
+---
+title: "Setting Up a Data Science Environment on macOS"
+author: "Martin J. Conyon"
+date: "August 2024"
+format: html
+---
+
+## Introduction
+
+This document provides a step-by-step guide to setting up a data science environment on macOS. It includes instructions for installing essential tools and packages, and detailed steps to verify that everything is working correctly.
+
+## Prerequisites
+
+Before starting, make sure you have Homebrew installed. Homebrew is a package manager for macOS that simplifies the installation of software.
+
+If Homebrew is not installed, you can install it by running the following command in your terminal:
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+## Installation Steps
+
+### 1. Install Homebrew Packages
+
+1. **Open Terminal**: Launch the Terminal application on your macOS.
+
+2. **Install Python and Miniconda**: Use Homebrew to install Python and Miniconda. Run the following commands in your terminal:
+
+   ```bash
+   brew install python
+   brew install --cask miniconda
+   ```
+
+3. **Initialize Conda**: Initialize Conda by running:
+
+   ```bash
+   conda init
+   ```
+
+4. **Install R and RStudio**: Install R and RStudio using Homebrew:
+
+   ```bash
+   brew install --cask r
+   brew install --cask rstudio
+   ```
+
+5. **Create and Activate Conda Environment**: Create a Conda environment named `myenv` and activate it:
+
+   ```bash
+   conda create --name myenv python=3.9 -y
+   conda activate myenv
+   ```
+
+6. **Install Python Packages**: Install essential Python packages within the Conda environment:
+
+   ```bash
+   conda install numpy pandas matplotlib scikit-learn jupyter -y
+   ```
+
+7. **Install Jupyter Notebook**: Install Jupyter Notebook using Conda:
+
+   ```bash
+   conda install jupyter -y
+   ```
+
+8. **Install Quarto**: Install Quarto using Homebrew:
+
+   ```bash
+   brew install --cask quarto
+   ```
+
+## Verifying Installation
+
+### 1. Verify Homebrew Installation
+
+Check the version of Homebrew to ensure it is installed:
+
+```bash
+brew --version
+```
+
+### 2. Verify Python Installation
+
+Check the version of Python:
+
+```bash
+python3 --version
+```
+
+Verify `pip` is available:
+
+```bash
+pip3 --version
+```
+
+### 3. Verify Conda Installation
+
+Check the version of Conda:
+
+```bash
+conda --version
+```
+
+List Conda environments:
+
+```bash
+conda env list
+```
+
+### 4. Verify Jupyter Notebook Installation
+
+Start Jupyter Notebook to ensure it is working. This should open a new tab in your browser:
+
+```bash
+jupyter notebook
+```
+
+### 5. Verify R Installation
+
+Check the version of R:
+
+```bash
+R --version
+```
+
+### 6. Verify RStudio Installation
+
+Open RStudio from the Applications folder or via the terminal:
+
+```bash
+open -a RStudio
+```
+
+### 7. Verify Quarto Installation
+
+Check the version of Quarto:
+
+```bash
+quarto --version
+```
+
+## Testing Everything Works
+
+### 1. Test Python Packages
+
+Run the following commands to check that essential Python packages are installed:
+
+```bash
+python3 -c "import numpy; print('numpy:', numpy.__version__)"
+python3 -c "import pandas; print('pandas:', pandas.__version__)"
+python3 -c "import matplotlib; print('matplotlib:', matplotlib.__version__)"
+python3 -c "import sklearn; print('scikit-learn:', sklearn.__version__)"
+```
+
+### 2. Test R Packages
+
+Start R and check if the necessary packages are installed:
+
+```r
+R
+```
+
+In the R console, run:
+
+```r
+installed.packages()[, "Package"]
+```
+
+Ensure `tidyverse`, `data.table`, `ggplot2`, `dplyr`, and `forecast` are listed.
+
+### 3. Test Jupyter Notebook
+
+Create a simple Jupyter notebook to test:
+
+```python
+# test_notebook.ipynb
+import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.linspace(-10, 10, 400)
+y = -x**2
+
+plt.plot(x, y)
+plt.title('Test Plot')
+plt.xlabel('x')
+plt.ylabel('y')
+plt.show()
+```
+
+Open Jupyter Notebook, create a new Python notebook, and run the above code in a cell. Verify that the plot is displayed.
+
+### 4. Test Quarto
+
+Create a simple Quarto document named `test.qmd`:
+
+```markdown
+---
+title: "Quarto Test"
+format: html
+---
+
+## Introduction
+
+This is a test document to check if Quarto is working correctly.
+
+```{python}
+print("Quarto is working!")
+```
+```
+
+Render the document with:
+
+```bash
+quarto render test.qmd
+```
+
+Check the output HTML file to verify that Quarto rendered the document correctly.
+
+## Troubleshooting
+
+- **RStudio Not Opening**: Ensure RStudio is properly installed. Try reinstalling if necessary.
+- **Jupyter Notebook Issues**: Ensure you are in the correct Conda environment and that Jupyter is installed.
+- **Quarto Issues**: Verify installation and paths. Reinstalling Quarto can sometimes resolve issues.
+
+For further assistance, refer to the documentation for Homebrew, Conda, Python, R, RStudio, Jupyter, and Quarto.
+
+## License
+
+This document is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+---
